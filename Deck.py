@@ -9,33 +9,58 @@
 import random
 
 class Card():
-    # A constructor with the parameters rank (either a character or an integer) and suit (a character). 
-    # Default values are 0 and '' (empty string). Note that you can use the type() function to check the type of a parameter. 
-    # The internal representation for the rank is an integer in the range -13. 
-    # The internal representation for the suit is a character: H, S, D or C. 
+    def __init__(self, rank = 0, suit = ""):
+        self.rank = rank
+        self.suit = suit
+        # A constructor with the parameters rank (either a character or an integer) and suit (a character). 
+        # Default values are 0 and '' (empty string). Note that you can use the type() function to check the type of a parameter. 
+        # The internal representation for the rank is an integer in the range -13. 
+        # The internal representation for the suit is a character: H, S, D or C. 
 
-    # Method __str__() for returning a string representation of a card. 
-    # The representation of a card is printed in a right justified field of 3 characters: 
-    # the ranks followed by the suit. 
-    # If a card has default values, then 'blk' (blank) is printed. 
-    # The letters A,J,Q,K are printed for the ranks 1,11,12,13, respectively.
+    def __str__(self):
+        return "The representation of a card is printed in a right justified field of 3 characters"
+        # Method __str__() for returning a string representation of a card. 
+        # The representation of a card is printed in a right justified field of 3 characters: 
+        # the ranks followed by the suit. 
+        # If a card has default values, then 'blk' (blank) is printed. 
+        # The letters A,J,Q,K are printed for the ranks 1,11,12,13, respectively.
 
-    # Method is_blank() that returns True if a card is blank, otherwise False.
-    pass
+    def is_blank(self):
+        pass
+        # Method is_blank() that returns True if a card is blank, otherwise False.
 
 class Deck():
-    # A constructor without any parameters. The constructor creates a deck of 52 cards.
-    # Method __str__() for returning a string representation of a deck, consisting of 4 lines containing 13 cards each.
-    # Method shuffle(). Shuffles the cards in the deck.
-    # Method deal(). Deal a single card by returning the card that is removed off the top of the deck.
-    pass
+    def __init__(self):
+        self.deck = 52
+        # A constructor without any parameters. The constructor creates a deck of 52 cards.
+    
+    def __str(self):
+        return "string representation of a deck, consisting of 4 lines containing 13 cards each"
+        # Method __str__() for returning a string representation of a deck, consisting of 4 lines containing 13 cards each.
+    
+    def shuffle(self):
+        pass
+        # Method shuffle(). Shuffles the cards in the deck.
+    
+    def deal(self):
+        pass
+        # Method deal(). Deal a single card by returning the card that is removed off the top of the deck.
 
 class PlayingHand():
-    # A constructor without any parameters. The constructor creates a hand of 13 blank cards.
-    # Method __str__() for returning a string representation of a playing hand, consisting of a single line containing a string representation of each card.
-    # Method add_card() with the parameter denoting a card. The methods adds the given card to the playing hand at the first blank position.
     # A constant, NUMBER_CARDS, with value 13
-    pass
+    NUMBER_CARDS = 13
+
+    def __init__(self):
+        self.blank_cards = 13
+        # A constructor without any parameters. The constructor creates a hand of 13 blank cards.
+    
+    def __str__(self):
+        return "string representation of a playing hand, consisting of a single line containing a string representation of each card"
+        # Method __str__() for returning a string representation of a playing hand, consisting of a single line containing a string representation of each card.
+    
+    def add_card(self):
+        pass
+        # Method add_card() with the parameter denoting a card. The methods adds the given card to the playing hand at the first blank position.
 
 # Main program and functions given:
 def test_cards():
