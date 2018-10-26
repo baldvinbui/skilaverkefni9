@@ -68,18 +68,20 @@ class Deck():
         # Method shuffle(). Shuffles the cards in the deck.
     
     def deal(self):
-        hand1 = []
-        hand2 = []
-        hand3 = []
-        hand4 = []
-
-        while len(self.deck) > 0:
-            hand1.append(self.deck.pop())
-            hand2.append(self.deck.pop())
-            hand3.append(self.deck.pop())
-            hand4.append(self.deck.pop())
-
-        return hand1, hand2, hand3, hand4
+        #print(self.deck)
+        return self.deck.pop()
+        #hand1 = []
+        #hand2 = []
+        #hand3 = []
+        #hand4 = []
+#
+        #while len(self.deck) > 0:
+        #    hand1.append(self.deck.pop())
+        #    hand2.append(self.deck.pop())
+        #    hand3.append(self.deck.pop())
+        #    hand4.append(self.deck.pop())
+#
+        #return hand1, hand2, hand3, hand4
         # Method deal(). Deal a single card by returning the card that is removed off the top of the deck.
 
 class PlayingHand():
@@ -97,7 +99,7 @@ class PlayingHand():
         # Method __str__() for returning a string representation of a playing hand, consisting of a single line containing a string representation of each card.
     
     def add_card(self):
-        pass
+        return "s1"
         # Method add_card() with the parameter denoting a card. The methods adds the given card to the playing hand at the first blank position.
 
 def test_cards():
@@ -110,11 +112,36 @@ def test_cards():
     card4 = Card('x', 7)
     print(card4)
 
+def deal_4_hands(deck, hand1, hand2, hand3, hand4):
+    ''' Deals cards for 4 hands '''
+    for i in range(PlayingHand.NUMBER_CARDS):
+        pass
+        #hand1.add_card(deck.deal())
+        #hand2.add_card(deck.deal())
+        #hand3.add_card(deck.deal())
+        #hand4.add_card(deck.deal())
+        print(deck.deal())
+        
+def print_4_hands(hand1, hand2, hand3, hand4):
+    ''' Prints the 4 hands '''
+    print(hand1)
+    print(hand2)
+    print(hand3)
+    print(hand4)
+
+def test_hands(deck):
+    hand1 = PlayingHand()
+    hand2 = PlayingHand()
+    hand3 = PlayingHand()
+    hand4 = PlayingHand()
+    print("The 4 hands:")
+    print_4_hands(hand1, hand2, hand3, hand4)
+    deal_4_hands(deck, hand1, hand2, hand3, hand4)
+
 random.seed(10)
 test_cards()
 deck = Deck()
 deck.shuffle()
 print("The deck:")
 print(deck)
-hands = PlayingHand()
-print(hands)
+test_hands(deck)
