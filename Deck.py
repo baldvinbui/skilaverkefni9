@@ -9,29 +9,47 @@
 import random
 
 class Card():
-    def __init__(self, rank = 0, suit = ""):
-        self.rank = rank
+    def __init__(self, rank = "", suit = ""):
+        rank_dict = {"1":"A","11":"J","12":"Q","13":"K"}
+        if(type(rank) == str):
+            if rank in '111213':
+                rank = int(rank)
+
+        if(type(rank) == int):
+            if rank >= 1 and rank <= 13:
+                if rank >= 2 and rank <= 10:
+                    rank = str(rank)
+                elif str(rank) in rank_dict:
+                    rank = str(rank)
+                    rank = rank_dict[rank]
+
+        if rank not in '12345678910111213aAjJqQkK':
+            rank = "blk"
+
+        if type(suit) == int or suit not in "SDHCsdhc":
+            suit = "blk"
+
         self.suit = suit
-        # A constructor with the parameters rank (either a character or an integer) and suit (a character). 
-        # Default values are 0 and '' (empty string). Note that you can use the type() function to check the type of a parameter. 
-        # The internal representation for the rank is an integer in the range -13. 
-        # The internal representation for the suit is a character: H, S, D or C. 
+        self.rank = rank
 
     def __str__(self):
-        return "The representation of a card is printed in a right justified field of 3 characters"
-        # Method __str__() for returning a string representation of a card. 
-        # The representation of a card is printed in a right justified field of 3 characters: 
-        # the ranks followed by the suit. 
-        # If a card has default values, then 'blk' (blank) is printed. 
-        # The letters A,J,Q,K are printed for the ranks 1,11,12,13, respectively.
+        if self.rank != "blk" and self.suit != "blk" or self.is_blank() == False:
+            return "{:>3}{}".format(self.rank.upper(),self.suit.upper())
+        else:
+            return "{}".format("blk")
 
     def is_blank(self):
-        pass
-        # Method is_blank() that returns True if a card is blank, otherwise False.
+        if self.rank == 0 or self.suit == "":
+            return False
+        else:
+            return True
 
 class Deck():
     def __init__(self):
-        self.deck = 52
+        self.deck = []
+        for card in range[1,52]:
+            self.deck.append(card)
+        print(card)
         # A constructor without any parameters. The constructor creates a deck of 52 cards.
     
     def __str(self):
