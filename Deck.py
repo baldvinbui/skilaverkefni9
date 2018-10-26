@@ -11,9 +11,10 @@ import random
 class Card():
     def __init__(self, rank = "", suit = ""):
         rank_dict = {"1":"A","11":"J","12":"Q","13":"K"}
-        if(type(rank) == str):
-            if rank in '111213':
-                rank = int(rank)
+        #if(type(rank) == str):
+        #    if rank in '111213':
+        #        rank = int(rank)
+        #        #pass
 
         if(type(rank) == int):
             if rank >= 1 and rank <= 13:
@@ -28,6 +29,11 @@ class Card():
 
         if type(suit) == int or suit not in "SDHCsdhc":
             suit = "blk"
+        
+        #if self.is_blank() == False:
+        if rank == "" or suit == "":
+            rank = "blk"
+            suit = "blk"
 
         self.suit = suit
         self.rank = rank
@@ -39,46 +45,49 @@ class Card():
             return "{}".format("blk")
 
     def is_blank(self):
-        if self.rank == 0 or self.suit == "":
+        if self.rank == "" or self.suit == "":
             return False
         else:
             return True
 
 class Deck():
     def __init__(self):
-        self.deck = []
-        for card in range[1,52]:
-            self.deck.append(card)
-        print(card)
+        deck = []
+        suits = "hsdc"
+        for suit in suits:    
+            for card in range(1,14):
+                card_name = str(Card(str(card),suit)).strip()
+                deck.append(card_name)
+        self.deck = deck
         # A constructor without any parameters. The constructor creates a deck of 52 cards.
     
-    def __str(self):
-        return "string representation of a deck, consisting of 4 lines containing 13 cards each"
+    def __str__(self):
+        printed = ""
+        #print(self.deck)
+        deck_of_thirteen = [self.deck[x:x+13] for x in range(0, len(self.deck), 13)]
+        for thirteen in deck_of_thirteen:
+            printed += (" {:>3}"*len(thirteen)).format(*thirteen) + "\n"
+        return printed
         # Method __str__() for returning a string representation of a deck, consisting of 4 lines containing 13 cards each.
     
     def shuffle(self):
-        pass
+        random.shuffle(self.deck)
+
         # Method shuffle(). Shuffles the cards in the deck.
     
     def deal(self):
-        pass
-        # Method deal(). Deal a single card by returning the card that is removed off the top of the deck.
+        hand1 = []
+        hand2 = []
+        hand3 = []
+        hand4 = []
 
-class PlayingHand():
-    # A constant, NUMBER_CARDS, with value 13
-    NUMBER_CARDS = 13
+        while len(self.deck) > 0:
+            hand1.append(self.deck.pop())
+            hand2.append(self.deck.pop())
+            hand3.append(self.deck.pop())
+            hand4.append(self.deck.pop())
 
-    def __init__(self):
-        self.blank_cards = 13
-        # A constructor without any parameters. The constructor creates a hand of 13 blank cards.
-    
-    def __str__(self):
-        return "string representation of a playing hand, consisting of a single line containing a string representation of each card"
-        # Method __str__() for returning a string representation of a playing hand, consisting of a single line containing a string representation of each card.
-    
-    def add_card(self):
-        pass
-        # Method add_card() with the parameter denoting a card. The methods adds the given card to the playing hand at the first blank position.
+        return hand1, hand2, hand3, hand4
 
 # Main program and functions given:
 def test_cards():

@@ -45,7 +45,7 @@ class Card():
 class Deck():
     def __init__(self):
         deck = []
-        suits = "sdhc"
+        suits = "hsdc"
         for suit in suits:    
             for card in range(1,14):
                 card_name = str(Card(str(card),suit)).strip()
@@ -54,10 +54,12 @@ class Deck():
         # A constructor without any parameters. The constructor creates a deck of 52 cards.
     
     def __str__(self):
-        
+        printed = ""
         #print(self.deck)
-        return "asdf"
-        #return "string representation of a deck, consisting of 4 lines containing 13 cards each"
+        deck_of_thirteen = [self.deck[x:x+13] for x in range(0, len(self.deck), 13)]
+        for thirteen in deck_of_thirteen:
+            printed += (" {:>3}"*len(thirteen)).format(*thirteen) + "\n"
+        return printed
         # Method __str__() for returning a string representation of a deck, consisting of 4 lines containing 13 cards each.
     
     def shuffle(self):
@@ -80,6 +82,24 @@ class Deck():
         return hand1, hand2, hand3, hand4
         # Method deal(). Deal a single card by returning the card that is removed off the top of the deck.
 
+class PlayingHand():
+    # A constant, NUMBER_CARDS, with value 13
+    NUMBER_CARDS = 13
+
+    def __init__(self):
+        hand = ["blk" for line in range(self.NUMBER_CARDS)]
+        self.hand = hand
+        # A constructor without any parameters. The constructor creates a hand of 13 blank cards.
+    
+    def __str__(self):
+        printed = (" {:>3}"*len(self.hand)).format(*self.hand)
+        return printed
+        # Method __str__() for returning a string representation of a playing hand, consisting of a single line containing a string representation of each card.
+    
+    def add_card(self):
+        pass
+        # Method add_card() with the parameter denoting a card. The methods adds the given card to the playing hand at the first blank position.
+
 def test_cards():
     card1 = Card()
     print(card1)
@@ -96,3 +116,5 @@ deck = Deck()
 deck.shuffle()
 print("The deck:")
 print(deck)
+hands = PlayingHand()
+print(hands)
