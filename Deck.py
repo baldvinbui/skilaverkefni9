@@ -89,6 +89,22 @@ class Deck():
 
         return hand1, hand2, hand3, hand4
 
+class PlayingHand():
+    # A constant, NUMBER_CARDS, with value 13
+    NUMBER_CARDS = 13
+
+    def __init__(self):
+        self.blank_cards = 13
+        # A constructor without any parameters. The constructor creates a hand of 13 blank cards.
+    
+    def __str__(self):
+        return "string representation of a playing hand, consisting of a single line containing a string representation of each card"
+        # Method __str__() for returning a string representation of a playing hand, consisting of a single line containing a string representation of each card.
+    
+    def add_card(self):
+        pass
+        # Method add_card() with the parameter denoting a card. The methods adds the given card to the playing hand at the first blank position.
+
 # Main program and functions given:
 def test_cards():
     card1 = Card()

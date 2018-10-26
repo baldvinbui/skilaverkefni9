@@ -1,12 +1,12 @@
 import random
 
 class Card():
-    def __init__(self, rank = "", suit = ""):
+    def __init__(self, rank = "0", suit = ""):
         rank_dict = {"1":"A","11":"J","12":"Q","13":"K"}
-        #if(type(rank) == str):
-        #    if rank in '111213':
-        #        rank = int(rank)
-        #        #pass
+        if(type(rank) == str):
+            if rank in '111213':
+                rank = int(rank)
+                #pass
 
         if(type(rank) == int):
             if rank >= 1 and rank <= 13:
@@ -50,38 +50,25 @@ class Deck():
             for card in range(1,14):
                 card_name = str(Card(str(card),suit)).strip()
                 deck.append(card_name)
+        deck.sort()
         self.deck = deck
         # A constructor without any parameters. The constructor creates a deck of 52 cards.
     
     def __str__(self):
         printed = ""
-        #print(self.deck)
         deck_of_thirteen = [self.deck[x:x+13] for x in range(0, len(self.deck), 13)]
+        deck_of_thirteen.reverse()
         for thirteen in deck_of_thirteen:
             printed += (" {:>3}"*len(thirteen)).format(*thirteen) + "\n"
-        return printed
+        return printed.rstrip()
         # Method __str__() for returning a string representation of a deck, consisting of 4 lines containing 13 cards each.
     
     def shuffle(self):
         random.shuffle(self.deck)
-
         # Method shuffle(). Shuffles the cards in the deck.
     
     def deal(self):
-        #print(self.deck)
         return self.deck.pop()
-        #hand1 = []
-        #hand2 = []
-        #hand3 = []
-        #hand4 = []
-#
-        #while len(self.deck) > 0:
-        #    hand1.append(self.deck.pop())
-        #    hand2.append(self.deck.pop())
-        #    hand3.append(self.deck.pop())
-        #    hand4.append(self.deck.pop())
-#
-        #return hand1, hand2, hand3, hand4
         # Method deal(). Deal a single card by returning the card that is removed off the top of the deck.
 
 class PlayingHand():
@@ -95,11 +82,12 @@ class PlayingHand():
     
     def __str__(self):
         printed = (" {:>3}"*len(self.hand)).format(*self.hand)
+        self.hand = []
         return printed
-        # Method __str__() for returning a string representation of a playing hand, consisting of a single line containing a string representation of each card.
+        # Method __str__() for returning sa string representation of a playing hand, consisting of a single line containing a string representation of each card.
     
-    def add_card(self):
-        return "s1"
+    def add_card(self, card):
+        self.hand.append(card)
         # Method add_card() with the parameter denoting a card. The methods adds the given card to the playing hand at the first blank position.
 
 def test_cards():
@@ -115,12 +103,10 @@ def test_cards():
 def deal_4_hands(deck, hand1, hand2, hand3, hand4):
     ''' Deals cards for 4 hands '''
     for i in range(PlayingHand.NUMBER_CARDS):
-        pass
-        #hand1.add_card(deck.deal())
-        #hand2.add_card(deck.deal())
-        #hand3.add_card(deck.deal())
-        #hand4.add_card(deck.deal())
-        print(deck.deal())
+        hand1.add_card(deck.deal())
+        hand2.add_card(deck.deal())
+        hand3.add_card(deck.deal())
+        hand4.add_card(deck.deal())
         
 def print_4_hands(hand1, hand2, hand3, hand4):
     ''' Prints the 4 hands '''
@@ -137,6 +123,8 @@ def test_hands(deck):
     print("The 4 hands:")
     print_4_hands(hand1, hand2, hand3, hand4)
     deal_4_hands(deck, hand1, hand2, hand3, hand4)
+    print("The 4 hands after dealing:")
+    print_4_hands(hand1, hand2, hand3, hand4)
 
 random.seed(10)
 test_cards()
@@ -145,3 +133,5 @@ deck.shuffle()
 print("The deck:")
 print(deck)
 test_hands(deck)
+print("The deck after dealing:")
+print(deck)
